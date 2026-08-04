@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculate Grade</title>
+
+    <script>
+        function calculateGrade() {
+            // Retrieve the input and convert it to a number
+            let score = Number(document.getElementById("score").value);
+            let grade = "";
+
+            // Check for out-of-bounds scores first
+            if (score < 0 || score > 100) {
+                grade = "Invalid Score";
+            } 
+            else if (score >= 80) {
+                grade = "A";
+            } 
+            else if (score >= 70) {
+                grade = "B";
+            } 
+            else if (score >= 60) {
+                grade = "C";
+            } 
+            else if (score >= 50) {
+                grade = "D";
+            } 
+            else {
+                // If it's valid and below 50, it must be an F
+                grade = "F"; 
+            }
+
+            // Output the final result to the HTML paragraph
+            if (grade === "Invalid Score") {
+                document.getElementById("result").innerHTML = "Please enter a valid score between 0 and 100.";
+            } else {
+                document.getElementById("result").innerHTML = "You got Grade " + grade;
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+<h1>Calculate Grade</h1>
+
+<p>Enter your score:</p>
+
+<input type="number" id="score">
+
+<button onclick="calculateGrade()">Submit</button>
+
+<p id="result"></p>
+
+</body>
+</html>

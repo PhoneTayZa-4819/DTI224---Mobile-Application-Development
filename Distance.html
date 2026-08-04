@@ -1,0 +1,82 @@
+<Distance html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance from University</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px; 
+            background-color: #f8f9fa;
+        }
+        button { 
+            margin-right: 10px; 
+            padding: 8px 16px; 
+            cursor: pointer;
+        }
+        #result { 
+            margin-top: 20px; 
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+    </style>
+    <script>
+        // Coordinates for Kasem Bundit University
+        const uniLat = 13.7384;
+        const uniLon = 100.6279;
+
+        function calculateDistance() {
+            let output = document.getElementById("result");
+            output.innerHTML = "Locating your position...";
+
+            // 1. Check if the Geolocation API is supported by the browser
+            if (navigator.geolocation) {
+                
+                // 2. Get the browser's current coordinates
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    
+                    let userLat = position.coords.latitude;
+                    let userLon = position.coords.longitude;
+
+                    // 3. Calculate differences for X and Y
+                    let x = userLat - uniLat;
+                    let y = userLon - uniLon;
+
+                    // 4. Apply the formula: Distance = sqrt(x^2 + y^2)
+                    let distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+                    // 5. Output the results to the screen
+                    output.innerHTML = 
+                        "<strong>University Coordinates:</strong> " + uniLat.toFixed(4) + ", " + uniLon.toFixed(4) + "<br>" +
+                        "<strong>Your Coordinates:</strong> " + userLat.toFixed(4) + ", " + userLon.toFixed(4) + "<br><br>" +
+                        "<strong>Raw Distance (Coordinate Units): " + distance.toFixed(4) + "</strong>";
+
+                }, function(error) {
+                    // Error handling if the user blocks location access
+                    output.innerHTML = "Error retrieving location: " + error.message;
+                });
+            } else {
+                output.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        // BOM History function for the Back button
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+
+    <h2>How far from University?</h2>
+    
+    <div>
+        <button onclick="calculateDistance()">Get Distance</button>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <p id="result">Click the button to find your distance.</p>
+
+</body>
+</html>
