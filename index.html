@@ -1,90 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phone Tay Za - Resume</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTI224 JavaScript Lab</title>
 
-<link rel="stylesheet" href="style.css">
+    <!-- 1. LINK TO PWA MANIFEST -->
+    <link rel="manifest" href="manifest.json">
 
+    <!-- 2. REGISTER PWA SERVICE WORKER -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+          .then(() => console.log('Service Worker Registered'));
+      }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .header-box {
+            background-color: #3b82f6;
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            color: #555555;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        .menu-btn {
+            display: block;
+            background-color: #1d72f3;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 10px;
+            margin: 12px 0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #155bb5;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            margin-top: 28px;
+            color: #777777;
+            font-size: 15px;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>Phone Tay Za</h1>
-<p class="subtitle">
-Student ID: 240702404819<br>
-Digital Technology Innovation Student
-</p>
+    <div class="container">
+        
+        <!-- Header Section -->
+        <div class="header-box">
+            MOBILE APPLICATION DEVELOPMENT This is connected with Github link
+        </div>
 
-<div class="section">
-    <h2>Profile</h2>
-    <p>
-        Motivated Digital Technology Innovation student at Kasem Bundit University.
-        Interested in software development, digital transformation,
-        startup innovation, and technology-driven business solutions.
-        Possesses strong communication skills in English and Thai and
-        basic programming experience with Python.
-    </p>
-</div>
+        <p class="subtitle">Select an assignment.</p>
 
-<div class="section">
-    <h2>Education</h2>
-    <p>
-        Kasem Bundit University (KBU)<br>
-        Bachelor of Digital Technology Innovation<br>
-        Expected Graduation: 2028
-    </p>
-</div>
+        <!-- Assignment Buttons -->
+        <a class="menu-btn" href="Resume.html">Resume</a>
+        
+        <a class="menu-btn" href="Hobby.html">Hobby</a>
+        
+        <a class="menu-btn" href="Converter.html">Converter</a>
+        
+        <a class="menu-btn" href="Grading.html">Grading</a>
+        
+        <a class="menu-btn" href="Change.html">Change</a>
+        
+        <a class="menu-btn" href="Distance.html">Distance</a>
 
-<div class="section">
-    <h2>Skills</h2>
-    <ul>
-        <li>Python Programming</li>
-        <li>Microsoft Office</li>
-        <li>English</li>
-        <li>Thai</li>
-        <li>Problem Solving</li>
-        <li>Team Collaboration</li>
-    </ul>
-</div>
+        <!-- Footer -->
+        <div class="footer">DTI224 JavaScript Lab</div>
 
-<div class="section">
-    <h2>Experience</h2>
-
-    <h3>Academic Projects and Team Collaboration</h3>
-    <ul>
-        <li>Developed Python-based applications for coursework assignments.</li>
-        <li>Collaborated with classmates on software development projects.</li>
-        <li>Prepared reports and presentations using Microsoft Office.</li>
-        <li>Conducted research and analysis for digital business case studies.</li>
-        <li>Applied problem-solving techniques to project requirements.</li>
-    </ul>
-
-    <h3>University Volunteer Activities</h3>
-    <ul>
-        <li>Assisted in organizing university activities and events.</li>
-        <li>Worked with student teams to coordinate event operations.</li>
-        <li>Supported participant registration and communication.</li>
-    </ul>
-</div>
-
-<div class="section">
-    <h2>Projects</h2>
-
-    <h3>Environmental Scanning and Venture Deconstruction</h3>
-    <ul>
-        <li>Analyzed digital startup business models.</li>
-        <li>Conducted market opportunity research.</li>
-        <li>Presented findings and recommendations.</li>
-    </ul>
-
-    <h3>Python Programming Projects</h3>
-    <ul>
-        <li>Created small applications for learning programming concepts.</li>
-        <li>Practiced debugging and software development techniques.</li>
-    </ul>
-</div>
+    </div>
 
 </body>
 </html>
