@@ -2,70 +2,75 @@
 <html>
 <head>
     <title>Measurement Converter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        select, input, button {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
+    <a href="index.html" class="back-btn">← Back</a>
 
-<h2>Measurement Converter</h2>
+    <h2>Measurement Converter</h2>
 
-<label>Enter Value:</label><br>
-<input type="number" id="value"><br><br>
+    <label>Enter Value:</label><br>
+    <input type="number" id="value"><br><br>
 
-<label>Select Conversion:</label><br>
-<select id="convert">
-    <option value="cmToM">Centimeter to Meter</option>
-    <option value="mToCm">Meter to Centimeter</option>
-    <option value="kmToM">Kilometer to Meter</option>
-    <option value="mToKm">Meter to Kilometer</option>
-    <option value="cToF">Celsius to Fahrenheit</option>
-    <option value="fToC">Fahrenheit to Celsius</option>
-</select>
+    <label>Select Conversion:</label><br>
+    <select id="convert">
+        <option value="cmToM">Centimeter to Meter</option>
+        <option value="mToCm">Meter to Centimeter</option>
+        <option value="kmToM">Kilometer to Meter</option>
+        <option value="mToKm">Meter to Kilometer</option>
+        <option value="cToF">Celsius to Fahrenheit</option>
+        <option value="fToC">Fahrenheit to Celsius</option>
+    </select>
 
-<br><br>
+    <br><br>
+    <button onclick="convert()">Convert</button>
+    <h3 id="result"></h3>
 
-<button onclick="convert()">Convert</button>
+    <script>
+    function convert() {
+        let value = parseFloat(document.getElementById("value").value);
+        let choice = document.getElementById("convert").value;
+        let answer;
 
-<h3 id="result"></h3>
-
-<script>
-function convert() {
-
-    let value = parseFloat(document.getElementById("value").value);
-    let choice = document.getElementById("convert").value;
-    let answer;
-
-    switch(choice){
-
-        case "cmToM":
-            answer = value / 100 + " Meter";
-            break;
-
-        case "mToCm":
-            answer = value * 100 + " Centimeter";
-            break;
-
-        case "kmToM":
-            answer = value * 1000 + " Meter";
-            break;
-
-        case "mToKm":
-            answer = value / 1000 + " Kilometer";
-            break;
-
-        case "cToF":
-            answer = (value * 9/5) + 32 + " °F";
-            break;
-
-        case "fToC":
-            answer = ((value - 32) * 5/9).toFixed(2) + " °C";
-            break;
-
-        default:
-            answer = "Invalid Selection";
+        switch(choice){
+            case "cmToM": answer = value / 100 + " Meter"; break;
+            case "mToCm": answer = value * 100 + " Centimeter"; break;
+            case "kmToM": answer = value * 1000 + " Meter"; break;
+            case "mToKm": answer = value / 1000 + " Kilometer"; break;
+            case "cToF": answer = (value * 9/5) + 32 + " °F"; break;
+            case "fToC": answer = ((value - 32) * 5/9).toFixed(2) + " °C"; break;
+            default: answer = "Invalid Selection";
+        }
+        document.getElementById("result").innerHTML = "Result: " + answer;
     }
-
-    document.getElementById("result").innerHTML = "Result: " + answer;
-}
-</script>
-
+    </script>
 </body>
 </html>
