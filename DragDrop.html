@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop</title>
+    <style>
+        /* Centers content in the middle */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        /* Styles the back button in the top-left */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background-color: #3b82f6; 
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* Styles the drag and drop boxes */
+        .drop-zone {
+            width: 350px;
+            height: 100px;
+            padding: 10px;
+            border: 2px dashed #aaaaaa;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            
+            // Check ensures it only drops in the DIV, not on top of another image
+            if (ev.target.tagName === 'DIV') {
+                ev.target.appendChild(document.getElementById(data));
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- Back Button to Main Menu -->
+    <a href="index.html" class="back-btn">← Back</a>
+
+    <h2>Drag and Drop Challenge</h2>
+    <p>Drag the logo back and forth between the two boxes.</p>
+
+    <!-- Box 1 (Starting Box) -->
+    <div id="box1" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img id="drag1" src="https://www.w3schools.com/html/img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
+    </div>
+
+    <!-- Box 2 (Empty Destination Box) -->
+    <div id="box2" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+</body>
+</html>
