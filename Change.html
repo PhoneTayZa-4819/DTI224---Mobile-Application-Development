@@ -1,15 +1,38 @@
-<Change html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Calculate Change</title>
-
+    <style>
+        /* Centers content in the middle */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        /* Styles the back button in the top-left */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background-color: #3b82f6; 
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
     <script>
         function calculateChange() {
-            // Retrieve the input and convert it to a number
             let amount = Number(document.getElementById("amount").value);
             let resultText = "";
-
-            // Array of objects representing the denominations
             const denominations = [
                 { value: 1000, name: "$1000 note" },
                 { value: 500, name: "$500 note" },
@@ -22,43 +45,29 @@
                 { value: 1, name: "$1 coin" }
             ];
 
-            // Ensure the amount is a valid number (0 or greater)
             if (amount < 0 || isNaN(amount)) {
                 document.getElementById("result").innerHTML = "Please enter a valid amount.";
                 return;
             }
-
-            // Loop through all denominations
             for (let denom of denominations) {
-                // Calculate how many of the current denomination fit
                 let count = Math.floor(amount / denom.value);
-                
-                // Add to result string EVERY time, even if count is 0
                 resultText += count + " of " + denom.name + "<br>";
-                
-                // Update the remaining amount
                 amount = amount % denom.value;
             }
-
-            // Output the final result to the HTML paragraph
             document.getElementById("result").innerHTML = resultText;
         }
     </script>
-
 </head>
-
 <body>
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">← Back</a>
 
     <h2>Calculate Change</h2>
-
     <div>
         <label for="amount">Enter Amount: </label>
         <input type="number" id="amount">
         <button onclick="calculateChange()">Submit</button>
     </div>
-
-    <!-- Paragraph to display the results -->
     <p id="result"></p>
-
 </body>
 </html>
