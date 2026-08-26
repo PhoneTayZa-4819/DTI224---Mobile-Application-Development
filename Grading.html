@@ -2,35 +2,43 @@
 <html>
 <head>
     <title>Calculate Grade</title>
-
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
     <script>
         function calculateGrade() {
-            // Retrieve the input and convert it to a number
             let score = Number(document.getElementById("score").value);
             let grade = "";
 
-            // Check for out-of-bounds scores first
-            if (score < 0 || score > 100) {
-                grade = "Invalid Score";
-            } 
-            else if (score >= 80) {
-                grade = "A";
-            } 
-            else if (score >= 70) {
-                grade = "B";
-            } 
-            else if (score >= 60) {
-                grade = "C";
-            } 
-            else if (score >= 50) {
-                grade = "D";
-            } 
-            else {
-                // If it's valid and below 50, it must be an F
-                grade = "F"; 
-            }
+            if (score < 0 || score > 100) { grade = "Invalid Score"; } 
+            else if (score >= 80) { grade = "A"; } 
+            else if (score >= 70) { grade = "B"; } 
+            else if (score >= 60) { grade = "C"; } 
+            else if (score >= 50) { grade = "D"; } 
+            else { grade = "F"; }
 
-            // Output the final result to the HTML paragraph
             if (grade === "Invalid Score") {
                 document.getElementById("result").innerHTML = "Please enter a valid score between 0 and 100.";
             } else {
@@ -38,20 +46,16 @@
             }
         }
     </script>
-
 </head>
-
 <body>
+    <a href="index.html" class="back-btn">← Back</a>
 
-<h1>Calculate Grade</h1>
-
-<p>Enter your score:</p>
-
-<input type="number" id="score">
-
-<button onclick="calculateGrade()">Submit</button>
-
-<p id="result"></p>
-
+    <h1>Calculate Grade</h1>
+    <p>Enter your score:</p>
+    <div>
+        <input type="number" id="score">
+        <button onclick="calculateGrade()">Submit</button>
+    </div>
+    <p id="result"></p>
 </body>
 </html>
