@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member List</title>
+    <style>
+        /* Centers content in the middle */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        /* Styles the back button in the top-left */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background-color: #3b82f6; 
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* Styles the central white container */
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            width: 320px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 90%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-add { background-color: #10b981; } /* Green */
+        .btn-remove { background-color: #ef4444; } /* Red */
+        
+        #memberDisplay {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+    <script>
+        // Automatically runs the display function when the page first loads
+        window.onload = function() {
+            DisplayMemberList();
+        };
+
+        // 1. Function to Display the List
+        function DisplayMemberList() {
+            // Retrieve the saved array from local storage, or create an empty array if it doesn't exist
+            let members = JSON.parse(localStorage.getItem("memberList")) || [];
+            let displayArea = document.getElementById("memberDisplay");
+            
+            if (members.length === 0) {
+                displayArea.innerHTML = "<p style='text-align:center; color:#888;'>List is empty.</p>";
+            } else {
+                let htmlStr = "<ul>";
+                for (let i = 0; i < members.length; i++) {
+                    htmlStr += "<li>" + members[i] + "</li>";
+                }
+                htmlStr += "</ul>";
+                displayArea.innerHTML = htmlStr;
+            }
+        }
+
+        // 2. Function to Add a Member
+        function AddMember() {
+            let nameInput = document.getElementById("memberName").value.trim();
+            if (nameInput === "") {
+                alert("Please enter a valid name.");
+                return;
+            }
+
+            let members = JSON.parse(localStorage.getItem("memberList")) || [];
+            members.push(nameInput); // Add the new name to the array
+            
+            // Save the updated array back into local storage
+            localStorage.setItem("memberList", JSON.stringify(members));
+
+            document.getElementById("memberName").value = ""; // Clear input box
+            DisplayMemberList(); // Refresh the display
+        }
+
+        // 3. Function to Remove a Member
+        function RemoveMember() {
+            let nameInput = document.getElementById("memberName").value.trim();
+            if (nameInput === "") {
+                alert("Please enter a name to remove.");
+                return;
+            }
+
+            let members = JSON.parse(localStorage.getItem("memberList")) || [];
+            let index = members.indexOf(nameInput); // Find where the name is in the array
+            
+            if (index > -1) {
+                members.splice(index, 1); // Remove the name from the array
+                localStorage.setItem("memberList", JSON.stringify(members));
+                
+                document.getElementById("memberName").value = ""; // Clear input box
+                DisplayMemberList(); // Refresh the display
+            } else {
+                alert("Member '" + nameInput + "' not found.");
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- Back Button to Main Menu -->
+    <a href="index.html" class="back-btn">← Back</a>
+
+    <div class="container">
+        <h2>Member List</h2>
+        
+        <input type="text" id="memberName" placeholder="Enter member name...">
+        <br>
+        <button class="btn-add" onclick="AddMember()">Add Member</button>
+        <button class="btn-remove" onclick="RemoveMember()">Remove Member</button>
+        
+        <div id="memberDisplay">
+            <!-- List will be injected here automatically by DisplayMemberList() -->
+        </div>
+    </div>
+
+</body>
+</html>
